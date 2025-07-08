@@ -8,3 +8,9 @@ export interface IUserInitialData{
         address:string 
     
 }
+export interface IInstituteInitialData{
+    name:string
+}
+export interface IStudentInitialData{
+    name:string
+}
