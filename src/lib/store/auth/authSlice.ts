@@ -34,11 +34,31 @@ export function registerUser(data:IRegisterUserData){
             if(response.status === 201){
                 //set status success by calling action reducers above in dispatch
                 dispatch(setStatus(Status.SUCCESS));
+            }else{
+                dispatch(setStatus(Status.ERROR));
             }
         }catch(error){
             dispatch(setStatus(Status.ERROR));
             //handle error
             console.error("Error registering user:", error);
         }
+    }
+}
+//loginThunk
+export function loginUser(data: IUserData){
+   return  async function loginUserThunk(dispatch:AppDispatch){
+    try {
+        const response= await API.post("/api/login", data);
+        if(response.status === 200){
+            dispatch(setUser(response.data));
+            dispatch(setStatus(Status.SUCCESS));
+        }else{
+            dispatch(setStatus(Status.ERROR));
+        }
+    } catch (error) {
+        dispatch(setStatus(Status.ERROR));
+        console.error("Error logging in user:", error);
+        
+    }
     }
 }

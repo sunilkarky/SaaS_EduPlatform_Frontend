@@ -17,3 +17,5 @@ const teacherSlice = createSlice({
     }
   }
 });
+export const { setTeachers, setStatus } = teacherSlice.actions;
+export default teacherSlice.reducer;
